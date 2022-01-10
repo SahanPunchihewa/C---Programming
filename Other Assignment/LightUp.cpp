@@ -29,10 +29,12 @@ class Login { // Login Class
                     if(PasswordAttempt == Password) {
 
                         cout << "Login Successful...!!!" << endl;
+                        cout<<endl;
                     }
                     else {
 
                         cout << "Login Failed...!!!" << endl;
+                        cout << endl;
                     }
      } 
         
@@ -55,6 +57,8 @@ class Register { // Class Register
     string Name;
     string Address;
     int TelephoneNumber;
+    int Units;
+    int Amount;
 
     public : // Public Properties
 
@@ -64,14 +68,18 @@ class Register { // Class Register
         Name = "";
         Address = "";
         TelephoneNumber = 0;
+        Units = 0;
+        Amount = 0;
 
     }
-    Register(string accNumber, string name, string address, int telephone) {
+    Register(string accNumber, string name, string address, int telephone, int units, int amount) {
 
         AccountNumber = accNumber;
         Name = name;
         Address = address;
         TelephoneNumber = telephone;
+        Units = units;
+        Amount = amount;
     }
 
     void UserRegister() { // Methhos
@@ -95,16 +103,45 @@ class Register { // Class Register
         cout << endl;
 
         cout << "Successfully Registered...!!!" << endl;
+        cout <<endl;
 
 
     }
 
     void Display(){ // methods
 
+        cout << "-----------------------------------------" << endl;
+        cout << "Customer Account Details !!!" << endl;
+        cout <<endl;
         cout << "Account Number :" << AccountNumber << endl;
         cout << "Name :" << Name << endl;
         cout << "Address :" << Address << endl;
         cout << "Telephone Number :" << TelephoneNumber << endl;
+
+    }
+
+    void Calculate() { 
+
+       cout << "-----------------------------------------" << endl;
+       cout<<endl;
+       cout << "Enter Account Number :";
+       cin >> AccountNumber;
+
+       cout << "Enter Amount of Per-Unit :";
+       cin >> Units;
+
+       cout << "Enter Number Burned Units :";
+       cin >> Amount;
+    }
+
+    void DisplayBill() {
+
+
+        int TotalAmount = Amount * Units; 
+
+        cout << "-----------------------------------------" << endl;
+        cout <<endl;
+        cout << "Total Burned Amount bill is :" << TotalAmount << endl;
 
     }
 
@@ -124,23 +161,25 @@ int main() { // Main Method
     if(choice == 'Y' || choice == 'y') { // condition
 
         Register r;
-        r.UserRegister();
-        r.Display();
+         r.UserRegister();
+         r.Display();
 
     }
     else { // condition
 
         cout << "Thank You...!!!" << endl;
+        cout <<endl;
     }
-
-    cout << "Do you want Display Details? (Y/N)"; // Display Details or not
+    cout<<endl;
+    cout << "Do you want Calculate Bill? (Y/N)"; // Display Details or not
     cin >> choice;
     cout << endl;
 
      if(choice == 'Y' || choice == 'y') { // condition
 
         Register r;
-        r.Display(); // Method Call
+        r.Calculate();
+        r.DisplayBill();
 
     }
     else {
